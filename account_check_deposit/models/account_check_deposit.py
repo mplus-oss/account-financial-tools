@@ -202,15 +202,15 @@ class AccountCheckDeposit(models.Model):
             deposit.write({"state": "draft"})
         return True
 
-    @api.model
-    # @api.model_create_multi
-    def create(self, vals):
-        if "company_id" in vals:
-            self = self.with_company(vals["company_id"])
-        if vals.get("name", "/") == "/":
-            vals["name"] = self.env["ir.sequence"].next_by_code(
-                "account.check.deposit", vals.get("deposit_date")
-            )
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "company_id" in vals:
+                self = self.with_company(vals["company_id"])
+            if vals.get("name", "/") == "/":
+                vals["name"] = self.env["ir.sequence"].next_by_code(
+                    "account.check.deposit", vals.get("deposit_date")
+                )
         return super().create(vals)
 
     def _prepare_account_move_vals(self):
