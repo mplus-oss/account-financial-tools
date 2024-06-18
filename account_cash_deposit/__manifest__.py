@@ -16,6 +16,7 @@
         "security/security.xml",
         "wizards/account_cash_order_reception_view.xml",
         "data/sequence.xml",
+        "data/cash_unit_xpf.xml",
         "data/cash_unit_eur.xml",
         "data/cash_unit_usd.xml",
         "data/cash_unit_chf.xml",

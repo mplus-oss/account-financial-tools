@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="xpf_note_10000" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">note</field>
+        <field name="value">10000</field>
+    </record>
+    <record id="xpf_note_5000" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">note</field>
+        <field name="value">5000</field>
+    </record>
+    <record id="xpf_note_1000" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">note</field>
+        <field name="value">1000</field>
+    </record>
+    <record id="xpf_note_500" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">note</field>
+        <field name="value">500</field>
+    </record>
+
+    <record id="xpf_coin_200" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">coin</field>
+        <field name="value">200</field>
+    </record>
+    <record id="xpf_coin_100" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">coin</field>
+        <field name="value">100</field>
+    </record>
+    <record id="xpf_coin_50" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">coin</field>
+        <field name="value">50</field>
+    </record>
+    <record id="xpf_coin_20" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">coin</field>
+        <field name="value">20</field>
+    </record>
+    <record id="xpf_coin_10" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">coin</field>
+        <field name="value">10</field>
+    </record>
+    <record id="xpf_coin_5" model="cash.unit">
+        <field name="currency_id" ref="base.XPF" />
+        <field name="cash_type">coin</field>
+        <field name="value">5</field>
+    </record>
+</odoo>
