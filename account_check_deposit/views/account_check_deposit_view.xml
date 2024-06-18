@@ -19,20 +19,20 @@
                         class="btn-primary"
                         string="Get All Received Checks"
                     />
-                    <!-- <button -->
-                    <!--     name="validate_deposit" -->
-                    <!--     invisible="state != 'draft'" -->
-                    <!--     string="Validate" -->
-                    <!--     type="object" -->
-                    <!--     class="btn-primary" -->
-                    <!-- /> -->
-                    <!-- <button -->
-                    <!--     name="backtodraft" -->
-                    <!--     invisible="state != 'done'" -->
-                    <!--     string="Back to Draft" -->
-                    <!--     type="object" -->
-                    <!-- /> -->
-                    <!-- <button name="get_report" string="Print" type="object" /> -->
+                    <button
+                        name="validate_deposit"
+                        invisible="state != 'draft'"
+                        string="Validate"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="backtodraft"
+                        invisible="state != 'done'"
+                        string="Back to Draft"
+                        type="object"
+                    />
+                    <button name="get_report" string="Print" type="object" />
                     <field
                         name="state"
                         widget="statusbar"
@@ -52,21 +52,18 @@
                                 name="deposit_date"
                                 options="{'datepicker': {'warn_future': true}}"
                             />
-                            <field name="journal_id" />
-                            <field
-                                name="currency_id"
-                                groups="base.group_multi_currency"
-                            />
+                            <field name="journal_id" groups="base.group_multi_currency" />
+                            <field name="currency_id" groups="base.group_multi_currency" />
                             <field name="bank_journal_id" widget="selection" />
                         </group>
                         <group name="right">
                             <field name="check_count" />
                             <field name="total_amount" />
                             <field name="in_hand_check_account_id" />
-                            <field
-                                name="company_id"
-                                groups="base.group_multi_company"
-                            />
+
+                            <field name="company_id" groups="base.group_multi_company" />
+                            <field name="company_id" invisible="1" readonly="state != 'draft'"/>
+
                             <field name="move_id" />
                         </group>
                     </group>
@@ -74,7 +71,8 @@
                         <field
                             name="check_payment_ids"
                             nolabel="1"
-                            widget="many2many"
+                            colspan="2"
+                            context="{'currency': currency_id, 'journal_id': journal_id}"
                             domain="[('reconciled', '=', False),
                                         ('debit', '>', 0),
                                         ('check_deposit_id', '=', False),
@@ -83,13 +81,15 @@
                                 ('company_id', '=', company_id),
                                 ('parent_state', '=', 'posted'),
                                 ]"
-                            context="{'currency': currency_id,
-                                        'journal_id': journal_id}"
+                            groups="base.group_multi_currency"
                         >
                             <tree>
+                                <field name="company_id" groups="base.group_multi_company" />
+                                <field name="company_id" invisible="1" />
                                 <field name="date" />
                                 <field name="date_maturity" optional="hide" />
-                                <field name="journal_id" optional="hide" />
+                                <field name="journal_id" optional="hide" groups="base.group_multi_currency" />
+                                <field name="currency_id" invisible="1" groups="base.group_multi_currency" />
                                 <field name="move_id" />
                                 <field name="ref" optional="show" />
                                 <field name="partner_id" />
@@ -101,7 +101,6 @@
                                     sum="1"
                                     optional="hide"
                                 />
-                                <field name="currency_id" invisible="1" />
                                 <field name="company_currency_id" invisible="1" />
                                 <field name="full_reconcile_id" optional="show" />
                             </tree>

@@ -208,8 +208,8 @@ class AccountCheckDeposit(models.Model):
             deposit.write({"state": "draft"})
         return True
 
-    # @api.model
-    @api.model_create_multi
+    @api.model
+    # @api.model_create_multi
     def create(self, vals):
         if "company_id" in vals:
             self = self.with_company(vals["company_id"])

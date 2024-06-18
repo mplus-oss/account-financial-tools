@@ -19,7 +19,7 @@
         "security/ir.model.access.csv",
         "security/check_deposit_security.xml",
         "data/sequence.xml",
-        # "views/account_check_deposit_view.xml",
+        "views/account_check_deposit_view.xml",
         # "views/account_move_line_view.xml",
         # "report/report.xml",
         # "report/report_checkdeposit.xml",
