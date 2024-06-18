@@ -99,7 +99,7 @@
                                 <field name="cash_unit_id" />
                                 <field name="qty" />
                                 <field name="subtotal" sum="1" />
-                                <field name="currency_id" invisible="1" />
+                                <field name="currency_id" column_invisible="1" />
                             </tree>
                         </field>
                     </group>

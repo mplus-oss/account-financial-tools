@@ -30,15 +30,12 @@ class AccountCashDeposit(models.Model):
         "parent_id",
         string="Lines",
         readonly=True,
-        # states={"draft": [("readonly", "=", False)]},
     )
     order_date = fields.Date(
         default=fields.Date.context_today,
         readonly=True,
-        # states={"draft": [("readonly", "=", False)]},
     )
     date = fields.Date(
-        # states={"done": [("readonly", "=", True)]},
         tracking=True,
         copy=False,
         help="Used as date for the journal entry.",
@@ -50,7 +47,6 @@ class AccountCashDeposit(models.Model):
         required=True,
         check_company=True,
         readonly=True,
-        # states={"draft": [("readonly", "=", False)]},
         tracking=True,
     )
     currency_id = fields.Many2one(
@@ -58,7 +54,6 @@ class AccountCashDeposit(models.Model):
         required=True,
         tracking=True,
         readonly=True,
-        # states={"draft": [("readonly", "=", False)]},
     )
     state = fields.Selection(
         [
@@ -85,21 +80,18 @@ class AccountCashDeposit(models.Model):
         "('bank_account_id', '!=', False)]",
         check_company=True,
         readonly=True,
-        # states={"draft": [("readonly", "=", False)]},
         tracking=True,
     )
     company_id = fields.Many2one(
         "res.company",
         required=True,
         readonly=True,
-        # states={"draft": [("readonly", "=", False)]},
         tracking=True,
     )
     coin_amount = fields.Monetary(
         string="Loose Coin Amount",
         currency_field="currency_id",
         readonly=True,
-        # states={"draft": [("readonly", "=", False)]},
         tracking=True,
         help="If your bank has a coin counting machine, enter the total amount "
         "of coins counted by the machine instead of creating a line for each type "

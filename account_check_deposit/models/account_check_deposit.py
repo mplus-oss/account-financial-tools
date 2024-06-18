@@ -22,11 +22,9 @@ class AccountCheckDeposit(models.Model):
         comodel_name="account.move.line",
         inverse_name="check_deposit_id",
         string="Check Payments",
-        # states={"done": [("readonly", "=", True)]},
     )
     deposit_date = fields.Date(
         required=True,
-        # states={"done": [("readonly", "=", True)]},
         default=fields.Date.context_today,
         tracking=True,
         copy=False,
@@ -38,7 +36,6 @@ class AccountCheckDeposit(models.Model):
         "('bank_account_id', '=', False)]",
         required=True,
         check_company=True,
-        # states={"done": [("readonly", "=", True)]},
         tracking=True,
     )
     in_hand_check_account_id = fields.Many2one(
@@ -49,7 +46,6 @@ class AccountCheckDeposit(models.Model):
     currency_id = fields.Many2one(
         comodel_name="res.currency",
         required=True,
-        # states={"done": [("readonly", "=", True)]},
         tracking=True,
     )
     state = fields.Selection(
@@ -72,7 +68,6 @@ class AccountCheckDeposit(models.Model):
         domain="[('company_id', '=', company_id), ('type', '=', 'bank'), "
         "('bank_account_id', '!=', False)]",
         check_company=True,
-        # states={"done": [("readonly", "=", True)]},
         tracking=True,
     )
     line_ids = fields.One2many(
@@ -83,7 +78,6 @@ class AccountCheckDeposit(models.Model):
     company_id = fields.Many2one(
         comodel_name="res.company",
         required=True,
-        # states={"done": [("readonly", "=", True)]},
         default=lambda self: self.env.company,
         tracking=True,
     )
@@ -124,7 +118,7 @@ class AccountCheckDeposit(models.Model):
         mapped_data = {
             x["check_deposit_id"][0]: {
                 "debit": x["debit"],
-                "amount_currency": x["amount_currency"],
+                "amount_currency": x.get("amount_currency", 0.0),
                 "count": x["check_deposit_id_count"],
             }
             for x in rg_res
